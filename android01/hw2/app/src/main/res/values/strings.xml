@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="button_dot">button_dot</string>
+    <string name="button_plus">button_plus</string>
+    <string name="button_equally">button_equally</string>
+    <string name="button_multiply">button_multiply</string>
+    <string name="button_division">button_division</string>
+    <string name="button_minus">button_minus</string>
 </resources>
