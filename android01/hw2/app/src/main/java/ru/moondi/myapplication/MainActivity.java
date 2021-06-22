@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonNine;
     private Button buttonZero;
     private TextView editTextScoreBoard;
+    private int counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonClear = findViewById(R.id.button_clear);
         buttonPlus = findViewById(R.id.button_plus);
         buttonEqually = findViewById(R.id.button_equally);
-        buttonPlus = findViewById(R.id.button_plus);
         buttonMultiplay = findViewById(R.id.button_multiply);
         buttonMinus = findViewById(R.id.button_minus);
         buttonDivision = findViewById(R.id.button_division);
@@ -49,10 +52,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonNine  = findViewById(R.id.button9);
         buttonZero  = findViewById(R.id.button0);
         editTextScoreBoard = findViewById(R.id.editTextScoreBoard);
+        initOnclickListener();
+    }
+
+    private void initOnclickListener() {
+        buttonOne.setOnClickListener(this);
+        buttonTwo.setOnClickListener(this);
+        buttonThree.setOnClickListener(this);
+        buttonFour.setOnClickListener(this);
+        buttonFive.setOnClickListener(this);
+        buttonSix.setOnClickListener(this);
+        buttonSeven.setOnClickListener(this);
+        buttonEight.setOnClickListener(this);
+        buttonNine.setOnClickListener(this);
+        buttonZero.setOnClickListener(this);
+        buttonMinus.setOnClickListener(this);
+        buttonPlus.setOnClickListener(this);
+        buttonMultiplay.setOnClickListener(this);
+        buttonDivision.setOnClickListener(this);
+        buttonClear.setOnClickListener(this);
+        buttonEqually.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
 
+        Toast.makeText(this,"Привет",Toast.LENGTH_SHORT).show();
     }
 }
