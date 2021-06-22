@@ -1,9 +1,20 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="button_dot">button_dot</string>
-    <string name="button_plus">button_plus</string>
-    <string name="button_equally">button_equally</string>
-    <string name="button_multiply">button_multiply</string>
-    <string name="button_division">button_division</string>
-    <string name="button_minus">button_minus</string>
+    <string name="text_button_clear">clear</string>
+    <string name="text_button_plus">+</string>
+    <string name="text_button_equally">=</string>
+    <string name="text_button_multiplay">*</string>
+    <string name="text_button_minus">-</string>
+    <string name="text_button_division">/</string>
+    <string name="text_button1">1</string>
+    <string name="text_button2">2</string>
+    <string name="text_button3">3</string>
+    <string name="text_button4">4</string>
+    <string name="text_button5">5</string>
+    <string name="text_button6">6</string>
+    <string name="text_button7">7</string>
+    <string name="text_button0">0</string>
+    <string name="text_button8">8</string>
+    <string name="text_button9">9</string>
+    <string name="hint_editTextScoreBoard">0</string>
 </resources>
