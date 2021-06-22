@@ -1,18 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="button1" type="id">button1</item>
-    <item name="button4" type="id">button4</item>
-    <item name="button7" type="id">button7</item>
-    <item name="button2" type="id">button2</item>
-    <item name="button5" type="id">button5</item>
-    <item name="button8" type="id">button8</item>
-    <item name="button3" type="id">button3</item>
-    <item name="button6" type="id">button6</item>
-    <item name="button9" type="id">button9</item>
-    <item name="button_dot" type="id">button_dot</item>
-    <item name="button_plus" type="id">button_plus</item>
-    <item name="button_equally" type="id">button_equally</item>
-    <item name="button_multiply" type="id">button_multiply</item>
-        <item name="button_division" type="id">/</item>
-    <item name="button_minus" type="id">button_minus</item>
+
 </resources>
