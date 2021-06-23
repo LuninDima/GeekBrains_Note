@@ -202,15 +202,21 @@
         android:id="@+id/editTextScoreBoard"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintWidth_percent="0.6"
+        android:background="@color/white"
+        android:backgroundTint="#00BCD4"
         android:ems="10"
         android:hint="@string/hint_editTextScoreBoard"
-        android:inputType="number"
+        android:inputType="number|text"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="@+id/button_division"
+        app:layout_constraintHeight_percent="0.1"
         app:layout_constraintStart_toStartOf="@+id/button1"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.6"
+        android:autofillHints="" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
