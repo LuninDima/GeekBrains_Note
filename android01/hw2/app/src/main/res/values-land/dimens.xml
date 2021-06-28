@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="marginButton">3dp</dimen>
+    <dimen name="widthButton">60dp</dimen>
+    <dimen name="heightButton">60dp</dimen>
+</resources>
