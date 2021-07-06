@@ -10,14 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NoteFullFragment#newInstance} factory method to
- * create an instance of this fragment.
- *
- */
 public class NoteFullFragment extends Fragment {
     public static final String ARG_INDEX = "index";
     private int index;

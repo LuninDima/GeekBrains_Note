@@ -21,6 +21,8 @@ import org.w3c.dom.Text;
 
 
 public class NoteListFragment extends Fragment {
+    public static final String CURRENT_NOTE_KEY = "CURRENT_NOTE";
+    private int currentPosition = 0;
     private boolean isLandscape;
 
     @Override
@@ -45,18 +47,36 @@ public class NoteListFragment extends Fragment {
             tvText.setTextSize(30);
             linearLayoutCompat.addView(tvText);
             final int fi = i;
-            tvText.setOnClickListener(v -> showNoteFull(fi));
+            tvText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    currentPosition = fi;
+                    showNoteFull(currentPosition);
+
+                }
+            });
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(CURRENT_NOTE_KEY, currentPosition);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        if(savedInstanceState != null){
+            currentPosition = savedInstanceState.getInt(CURRENT_NOTE_KEY);
+        }
         if (isLandscape) {
-            showLandNoteFull(0);
+            showLandNoteFull(currentPosition);
         }
     }
+
+
 
     private void showNoteFull(int index) {
         isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
