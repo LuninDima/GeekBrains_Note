@@ -22,7 +22,7 @@ import org.w3c.dom.Text;
 
 public class NoteListFragment extends Fragment {
     public static final String CURRENT_NOTE_KEY = "CURRENT_NOTE";
-    private int currentPosition = 0;
+    private Note currentNote;
     private boolean isLandscape;
 
     @Override
@@ -50,8 +50,8 @@ public class NoteListFragment extends Fragment {
             tvText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    currentPosition = fi;
-                    showNoteFull(currentPosition);
+                    currentNote = new Note(getResources().getStringArray(R.array.noteName)[fi], getResources().getStringArray(R.array.noteDescription)[fi], getResources().getStringArray(R.array.noteDate)[fi], getResources().getStringArray(R.array.noteText)[fi], fi);
+                    showNoteFull(currentNote);
 
                 }
             });
@@ -60,7 +60,7 @@ public class NoteListFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt(CURRENT_NOTE_KEY, currentPosition);
+        outState.putParcelable(CURRENT_NOTE_KEY, currentNote);
         super.onSaveInstanceState(outState);
     }
 
@@ -68,36 +68,38 @@ public class NoteListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-        if(savedInstanceState != null){
-            currentPosition = savedInstanceState.getInt(CURRENT_NOTE_KEY);
+        if (savedInstanceState != null) {
+            currentNote = savedInstanceState.getParcelable(CURRENT_NOTE_KEY);
+        } else {
+            currentNote = new Note(getResources().getStringArray(R.array.noteName)[0], getResources().getStringArray(R.array.noteDescription)[0], getResources().getStringArray(R.array.noteDate)[0], getResources().getStringArray(R.array.noteText)[0], 0);
         }
-        if (isLandscape) {
-            showLandNoteFull(currentPosition);
+        if(isLandscape){
+            showLandNoteFull(currentNote);
         }
     }
 
 
 
-    private void showNoteFull(int index) {
-        isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-        if (isLandscape) {
-            showLandNoteFull(index);
-        } else showPortNoteFull(index);
-    }
+private void showNoteFull(Note currentNote){
+        isLandscape=getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE;
+        if(isLandscape){
+        showLandNoteFull(currentNote);
+        }else showPortNoteFull(currentNote);
+        }
 
-    private void showLandNoteFull(int fi) {
-        NoteFullFragment fullFragment = NoteFullFragment.newInstance(fi);
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+private void showLandNoteFull(Note currentNote){
+        NoteFullFragment fullFragment = NoteFullFragment.newInstance(currentNote);
+        FragmentManager fragmentManager=requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.NoteFullFragment, fullFragment);
         fragmentTransaction.setTransition(fragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
-    }
+        }
 
-    private void showPortNoteFull(int index) {
-    Intent intent = new Intent();
-    intent.setClass(getActivity(), NoteFullActivity.class);
-    intent.putExtra(NoteFullFragment.ARG_INDEX, index);
-    startActivity(intent);
-    }
-}
+private void showPortNoteFull(Note currentNote){
+        Intent intent=new Intent();
+        intent.setClass(getActivity(),NoteFullActivity.class);
+        intent.putExtra(NoteFullFragment.ARG_NOTE,currentNote);
+        startActivity(intent);
+        }
+        }

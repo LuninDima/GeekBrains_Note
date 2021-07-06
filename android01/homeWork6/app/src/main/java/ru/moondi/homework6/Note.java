@@ -1,11 +1,34 @@
 package ru.moondi.homework6;
 
-public class Note {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Note implements Parcelable {
     private String noteName;
     private String noteDescription;
     private String noteText;
     private String noteDate;
     private int noteId;
+
+    protected Note(Parcel in) {
+        noteName = in.readString();
+        noteDescription = in.readString();
+        noteText = in.readString();
+        noteDate = in.readString();
+        noteId = in.readInt();
+    }
+
+    public static final Creator<Note> CREATOR = new Creator<Note>() {
+        @Override
+        public Note createFromParcel(Parcel in) {
+            return new Note(in);
+        }
+
+        @Override
+        public Note[] newArray(int size) {
+            return new Note[size];
+        }
+    };
 
     public String getNoteName() {
         return noteName;
@@ -53,5 +76,19 @@ public class Note {
         this.noteText = noteText;
         this.noteDate = noteDate;
         this.noteId = noteId;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(noteName);
+        dest.writeString(noteDescription);
+        dest.writeString(noteText);
+        dest.writeString(noteDate);
+        dest.writeInt(noteId);
     }
 }

@@ -11,13 +11,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class NoteFullFragment extends Fragment {
-    public static final String ARG_INDEX = "index";
-    private int index;
+    public static final String ARG_NOTE = "note";
+    private Note note;
 
-    public static NoteFullFragment newInstance(int index) {
+    public static NoteFullFragment newInstance(Note note) {
         NoteFullFragment fragment = new NoteFullFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_INDEX, index);
+        args.putParcelable(ARG_NOTE, note);
         fragment.setArguments(args);
         return fragment;
     }
@@ -30,7 +30,7 @@ public class NoteFullFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            index = getArguments().getInt(ARG_INDEX);
+            note = getArguments().getParcelable(ARG_NOTE);
         }
     }
 
@@ -46,10 +46,10 @@ public class NoteFullFragment extends Fragment {
         String[] noteDescription = getResources().getStringArray(R.array.noteDescription);
         String[] noteDate = getResources().getStringArray(R.array.noteDate);
         String[] noteText = getResources().getStringArray(R.array.noteText);
-        noteTvName.setText(noteName[index]);
-        noteTvDescription.setText(noteDescription[index]);
-        noteTvDate.setText(noteDate[index]);
-        noteTvText.setText(noteText[index]);
+        noteTvName.setText(note.getNoteName());
+        noteTvDescription.setText(note.getNoteDescription());
+        noteTvDate.setText(note.getNoteDate());
+        noteTvText.setText(note.getNoteText());
         return view;
     }
 
