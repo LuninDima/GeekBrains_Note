@@ -9,13 +9,13 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentNoteList"
         android:name="ru.moondi.homework6.NoteListFragment"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dp0"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
     <FrameLayout
         android:id="@+id/NoteFullFragment"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/dp0"
         android:layout_height="match_parent"
         android:layout_weight="1"/>
 
