@@ -8,6 +8,8 @@
     <string name="main">Главная</string>
     <string name="favorite">Избранное</string>
     <string name="search">Поиск</string>
+    <string name="text_button_list_fragment">Список Заметок</string>
+    <string name="text_button_full_fragment">Текст заметки</string>
     <string-array name="noteName">
         <item>Заметка 1</item>
         <item>Заметка 2</item>
