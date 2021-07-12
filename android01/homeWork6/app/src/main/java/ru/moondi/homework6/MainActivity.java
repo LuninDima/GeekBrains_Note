@@ -4,20 +4,59 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initToolbar();
+         initToolbar();
+        initButton();
+        addFragment(new NoteListFragment());
+
+    }
+
+    private void initButton() {
+        Button buttonFullFragmentContentMain = findViewById(R.id.button_full_fragment_content_main);
+        Button buttonListFragmentContentMain = findViewById(R.id.button_list_fragment_main_content);
+        buttonFullFragmentContentMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("mylogs", "полная");
+
+            }
+        });
+        buttonListFragmentContentMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("mylogs", "список");
+                addFragment(new NoteListFragment());
+            }
+        });
+    }
+
+
+
+    private void addFragment(Fragment fragment) {
+        Log.d("mylogs", "добавить фрагмент");
+        FragmentManager fragmentManager =getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container_main, fragment);
+        fragmentTransaction.commit();
     }
 
     private void initToolbar() {
