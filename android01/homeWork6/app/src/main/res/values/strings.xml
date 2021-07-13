@@ -13,6 +13,10 @@
     <string name="add_menu_item">добавить заметку</string>
     <string name="title_edit_item_popup">Редактировать</string>
     <string name="title_del_item_popup">Удалить</string>
+    <string name="title_notes_item_menu_drawer">Список</string>
+    <string name="title_full_note_item_menu_drawer">Заметка</string>
+    <string name="title_settings_item_menu_drawer">Настройки</string>
+    <string name="title_about_item_menu_drawer">О приложении</string>
     <string-array name="noteName">
         <item>Заметка 1</item>
         <item>Заметка 2</item>

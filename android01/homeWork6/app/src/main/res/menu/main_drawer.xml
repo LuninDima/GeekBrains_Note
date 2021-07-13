@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:title="@string/title_notes_item_menu_drawer"
+    android:id="@+id/notes_item_menu_drawer"
+    android:orderInCategory="1"/>
+ <item
+     android:title="@string/title_full_note_item_menu_drawer"
+     android:id="@+id/full_note_item_menu_drawer"
+     android:orderInCategory="2"/>
+    <item
+        android:title="@string/title_settings_item_menu_drawer"
+        android:id="@+id/settings_item_menu_drawer"
+        android:orderInCategory="3"/>
+    <item
+        android:title="@string/title_about_item_menu_drawer"
+        android:id="@+id/about_item_menu_drawer"
+        android:orderInCategory="4"/>
+</menu>
