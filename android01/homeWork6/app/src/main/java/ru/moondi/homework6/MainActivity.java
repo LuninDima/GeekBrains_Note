@@ -1,6 +1,7 @@
 package ru.moondi.homework6;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -13,9 +14,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     public static final String CURRENT_NOTE = "CurrentNote";
@@ -24,12 +29,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.app_bar_main);
+        setContentView(R.layout.activity_main);
         savedInstanceState(savedInstanceState);
-         initToolbar();
+        Toolbar toolbar = initToolbar();
+        initDrawer(toolbar);
         initButton();
         addFragment(new NoteListFragment());
 
+    }
+
+    private void initDrawer(Toolbar toolbar) {
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        // Обработка навигационного меню
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if (navigateFragment(id)){
+                    drawer.closeDrawer(GravityCompat.START);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void savedInstanceState(Bundle savedInstanceState) {
@@ -83,9 +113,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    private void initToolbar() {
+    private Toolbar initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    return toolbar;
     }
 
            @Override
@@ -109,7 +140,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-   @Override
+    private boolean navigateFragment(int id) {
+        switch (id) {
+            case R.id.notes_item_menu_drawer:
+                addFragment(new NoteListFragment());
+                return true;
+            case R.id.full_note_item_menu_drawer:
+               if(currentNote != null){
+                   addFragment(NoteFullFragment.newInstance(currentNote));
+               } else {
+                   Toast.makeText(getApplicationContext(), "Не выбрана ни одна заметка", Toast.LENGTH_SHORT).show();
+               }
+                return true;
+            case R.id.settings_item_menu_drawer:
+               Toast.makeText(getApplicationContext(), "Настройки", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.about_item_menu_drawer:
+                Toast.makeText(getApplicationContext(), "О приложении", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return false;
+    }
+
+                @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         MenuItem search = menu.findItem(R.id.action_search);
