@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class NoteFullFragment extends Fragment {
     public static final String ARG_NOTE = "note";
-    private Note note;
+    public Note note;
 
     public static NoteFullFragment newInstance(Note note) {
         NoteFullFragment fragment = new NoteFullFragment();
@@ -20,10 +20,6 @@ public class NoteFullFragment extends Fragment {
         args.putParcelable(ARG_NOTE, note);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public NoteFullFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -42,10 +38,6 @@ public class NoteFullFragment extends Fragment {
         TextView noteTvDescription = view.findViewById(R.id.note_tv_Description);
         TextView noteTvDate = view.findViewById(R.id.note_tv_Date);
         TextView noteTvText = view.findViewById(R.id.note_tv_text);
-        String[] noteName = getResources().getStringArray(R.array.noteName);
-        String[] noteDescription = getResources().getStringArray(R.array.noteDescription);
-        String[] noteDate = getResources().getStringArray(R.array.noteDate);
-        String[] noteText = getResources().getStringArray(R.array.noteText);
         noteTvName.setText(note.getNoteName());
         noteTvDescription.setText(note.getNoteDescription());
         noteTvDate.setText(note.getNoteDate());

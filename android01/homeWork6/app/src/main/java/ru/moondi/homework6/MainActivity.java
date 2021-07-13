@@ -19,16 +19,42 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.util.List;
 
+import static ru.moondi.homework6.NoteFullFragment.ARG_NOTE;
+
 public class MainActivity extends AppCompatActivity {
+    public static final String CURRENT_NOTE = "CurrentNote";
+    public Note currentNote;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        savedInstanceState(savedInstanceState);
          initToolbar();
         initButton();
         addFragment(new NoteListFragment());
 
     }
+
+    private void savedInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            // Восстановление текущей позиции.
+            currentNote = savedInstanceState.getParcelable(CURRENT_NOTE);
+        } else {
+   /*         String[] noteName = getResources().getStringArray(R.array.noteName);
+            String[] noteDescription = getResources().getStringArray(R.array.noteDescription);
+            String[] noteDate = getResources().getStringArray(R.array.noteDate);
+            String[] noteText = getResources().getStringArray(R.array.noteText);
+            currentNote = new Note(noteName[0],noteDescription[0], noteDate[0],noteText[0], 0);
+       */ }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(CURRENT_NOTE, currentNote);
+        super.onSaveInstanceState(outState);
+    }
+
 
     private void initButton() {
         Button buttonFullFragmentContentMain = findViewById(R.id.button_full_fragment_content_main);
@@ -37,7 +63,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("mylogs", "полная");
-
+                if (currentNote != null) { // если у нас уже выбрана заметка, и нам есть что показать
+                    addFragment(NoteFullFragment.newInstance(currentNote));
+                } else { // если нечего показать(не выбрана заметка), предупреждаем пользователя
+                    Toast.makeText(getApplicationContext(), "Не выбрана ни одна заметка", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         buttonListFragmentContentMain.setOnClickListener(new View.OnClickListener() {
@@ -49,11 +79,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
     private void addFragment(Fragment fragment) {
         Log.d("mylogs", "добавить фрагмент");
-        FragmentManager fragmentManager =getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container_main, fragment);
         fragmentTransaction.commit();

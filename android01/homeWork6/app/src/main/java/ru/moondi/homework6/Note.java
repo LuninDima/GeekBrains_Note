@@ -1,5 +1,6 @@
 package ru.moondi.homework6;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -17,6 +18,9 @@ public class Note implements Parcelable {
         noteDate = in.readString();
         noteId = in.readInt();
     }
+    public Note(int contentIndex){
+        this.noteId = contentIndex;
+    }
 
     public static final Creator<Note> CREATOR = new Creator<Note>() {
         @Override
@@ -32,6 +36,9 @@ public class Note implements Parcelable {
 
     public String getNoteName() {
         return noteName;
+    }
+    public String getNoteName(Context mContext) {
+        return mContext.getResources().getStringArray(R.array.noteName)[noteId];
     }
 
     public void setNoteName(String noteName) {
@@ -77,6 +84,8 @@ public class Note implements Parcelable {
         this.noteDate = noteDate;
         this.noteId = noteId;
     }
+
+
 
     @Override
     public int describeContents() {
