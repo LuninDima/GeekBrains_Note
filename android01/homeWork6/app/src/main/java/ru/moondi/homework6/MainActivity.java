@@ -17,10 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import java.util.List;
-
-import static ru.moondi.homework6.NoteFullFragment.ARG_NOTE;
-
 public class MainActivity extends AppCompatActivity {
     public static final String CURRENT_NOTE = "CurrentNote";
     public Note currentNote;
@@ -28,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.app_bar_main);
         savedInstanceState(savedInstanceState);
          initToolbar();
         initButton();

@@ -17,6 +17,8 @@
     <string name="title_full_note_item_menu_drawer">Заметка</string>
     <string name="title_settings_item_menu_drawer">Настройки</string>
     <string name="title_about_item_menu_drawer">О приложении</string>
+    <string name="navigation_drawer_open">Открыть меню</string>
+    <string name="navigation_drawer_close">Закрыть меню</string>
     <string-array name="noteName">
         <item>Заметка 1</item>
         <item>Заметка 2</item>
