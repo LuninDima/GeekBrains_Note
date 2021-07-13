@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
             // Восстановление текущей позиции.
             currentNote = savedInstanceState.getParcelable(CURRENT_NOTE);
         } else {
-   /*         String[] noteName = getResources().getStringArray(R.array.noteName);
+            String[] noteName = getResources().getStringArray(R.array.noteName);
             String[] noteDescription = getResources().getStringArray(R.array.noteDescription);
             String[] noteDate = getResources().getStringArray(R.array.noteDate);
             String[] noteText = getResources().getStringArray(R.array.noteText);
             currentNote = new Note(noteName[0],noteDescription[0], noteDate[0],noteText[0], 0);
-       */ }
+        }
     }
 
     @Override

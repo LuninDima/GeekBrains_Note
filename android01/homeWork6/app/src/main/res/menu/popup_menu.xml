@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:title="@string/title_edit_item_popup"
+    android:id="@+id/edit_item_poup"
+    android:orderInCategory="10"/>
+    <item
+        android:title="@string/title_del_item_popup"
+        android:id="@+id/del_item_popup"
+        android:orderInCategory="15"/>
+</menu>

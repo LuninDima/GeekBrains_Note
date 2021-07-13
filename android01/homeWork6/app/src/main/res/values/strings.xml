@@ -10,6 +10,9 @@
     <string name="search">Поиск</string>
     <string name="text_button_list_fragment">Список Заметок</string>
     <string name="text_button_full_fragment">Текст заметки</string>
+    <string name="add_menu_item">добавить заметку</string>
+    <string name="title_edit_item_popup">Редактировать</string>
+    <string name="title_del_item_popup">Удалить</string>
     <string-array name="noteName">
         <item>Заметка 1</item>
         <item>Заметка 2</item>
