@@ -11,19 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.MaterialComponents">
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_list_fragment_main_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_button_list_fragment"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="@string/text_button_list_fragment" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_full_fragment_content_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/text_button_full_fragment"
-        android:layout_weight="1"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_full_fragment_content_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/text_button_full_fragment" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 

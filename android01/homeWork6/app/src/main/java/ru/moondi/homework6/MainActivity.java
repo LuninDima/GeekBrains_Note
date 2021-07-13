@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -25,7 +26,7 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity {
     public static final String CURRENT_NOTE = "CurrentNote";
     public Note currentNote;
-
+    private boolean isLandScape;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +34,17 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState(savedInstanceState);
         Toolbar toolbar = initToolbar();
         initDrawer(toolbar);
-        initButton();
-        addFragment(new NoteListFragment());
+        initView();
+
+
+    }
+
+    private void initView() {
+        isLandScape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        if(!isLandScape) {
+            initButton();
+            addFragment(new NoteListFragment());
+        }
 
     }
 
@@ -142,16 +152,20 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean navigateFragment(int id) {
         switch (id) {
-            case R.id.notes_item_menu_drawer:
-                addFragment(new NoteListFragment());
-                return true;
-            case R.id.full_note_item_menu_drawer:
-               if(currentNote != null){
-                   addFragment(NoteFullFragment.newInstance(currentNote));
-               } else {
-                   Toast.makeText(getApplicationContext(), "Не выбрана ни одна заметка", Toast.LENGTH_SHORT).show();
-               }
-                return true;
+
+                case R.id.notes_item_menu_drawer:
+                    if(!isLandScape) {  addFragment(new NoteListFragment());
+                    return true;
+                    }
+                case R.id.full_note_item_menu_drawer:
+                    if(!isLandScape){
+                    if (currentNote != null) {
+                        addFragment(NoteFullFragment.newInstance(currentNote));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Не выбрана ни одна заметка", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                    return true;
             case R.id.settings_item_menu_drawer:
                Toast.makeText(getApplicationContext(), "Настройки", Toast.LENGTH_SHORT).show();
                 return true;

@@ -80,13 +80,15 @@ public class NoteListFragment extends Fragment {
         }*/
         if(isLandscape){
             showLandNoteFull(((MainActivity)getActivity()).currentNote);
+            Log.d("mylogs", "ландшафт");
         }
     }
 
 
 
 private void showNoteFull(Note currentNote){
-      //  isLandscape=getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE;
+        Log.d("mylogs", "ландшафт");
+      isLandscape=getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE;
         if(isLandscape){
         showLandNoteFull(currentNote);
         }else showPortNoteFull(currentNote);
@@ -109,8 +111,7 @@ private void showPortNoteFull(Note currentNote){
         Toast.makeText(getContext(), "Не выбрана ни одна заметка", Toast.LENGTH_SHORT).show();
     }
     }
-    public void addFragment(Fragment fragment) {
-        Log.d("mylogs", "добавить фрагмент");
+    private void addFragment(Fragment fragment) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container_main, fragment);
