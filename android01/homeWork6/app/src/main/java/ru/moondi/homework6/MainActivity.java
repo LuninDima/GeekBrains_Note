@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("mylogs", "добавить фрагмент");
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container_main, fragment);
+        if(isLandScape) {
+            fragmentTransaction.replace(R.id.NoteFullFragment, fragment);
+    } else  fragmentTransaction.replace(R.id.fragment_container_main, fragment);
         fragmentTransaction.commit();
     }
 
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                Toast.makeText(getApplicationContext(), "Настройки", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.about_item_menu_drawer:
-                Toast.makeText(getApplicationContext(), "О приложении", Toast.LENGTH_SHORT).show();
+                addFragment(new AboutFragment());
                 return true;
         }
         return false;

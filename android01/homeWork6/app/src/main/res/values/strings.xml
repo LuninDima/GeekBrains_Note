@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Блокнот</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    hello_blank_fragment
+    <string name="text_View_about_fragment">Приложение блокнот для хранения записей</string>
+    <string name="hello_blank_fragment">hello_blank_fragment</string>
     <string name="menu_add">добавить элемент</string>
     <string name="menu_clear">Очистить</string>
     <string name="settings">Настройки</string>
