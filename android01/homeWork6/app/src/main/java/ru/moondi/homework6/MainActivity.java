@@ -35,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = initToolbar();
         initDrawer(toolbar);
         initView();
+         initToolbar();
+        initButton();
 
-
+        addFragment(new NoteListFragment());
     }
 
     private void initView() {
