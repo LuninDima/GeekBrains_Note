@@ -4,4 +4,5 @@
     <dimen name="padding_Text_View">10dp</dimen>
     <dimen name="nav_header_height">200dp</dimen>
     <dimen name="nav_header_dimen">42sp</dimen>
+    <dimen name="text_tv_item">30sp</dimen>
 </resources>

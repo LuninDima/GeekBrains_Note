@@ -46,14 +46,16 @@ public class NoteListFragment extends Fragment {
 
     private void initList(View view) {
         LinearLayoutCompat linearLayoutCompat = (LinearLayoutCompat) view;
-        String[] noteListName = getResources().getStringArray(R.array.noteName);
-        for (int i = 0; i < noteListName.length; i++) {
-            TextView tvText = new TextView(getContext());
-            tvText.setText(noteListName[i]);
-            tvText.setTextSize(30);
-            linearLayoutCompat.addView(tvText);
-            final int fi = i;
-            tvText.setOnClickListener(new View.OnClickListener() {
+        String[] arrayNoteListName = getResources().getStringArray(R.array.noteName);
+        LayoutInflater inflater = getLayoutInflater();
+        for (int i = 0; i < arrayNoteListName.length; i++) {
+            String noteListName = arrayNoteListName[i];
+           View item = inflater.inflate(R.layout.item, linearLayoutCompat, false);
+           TextView tv_item = item.findViewById(R.id.tv_item);
+           tv_item.setText(noteListName);
+           linearLayoutCompat.addView(item);
+                       final int fi = i;
+            tv_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ((MainActivity) getActivity()).currentNote = new Note(getResources().getStringArray(R.array.noteName)[fi], getResources().getStringArray(R.array.noteDescription)[fi], getResources().getStringArray(R.array.noteDate)[fi], getResources().getStringArray(R.array.noteText)[fi], fi);
