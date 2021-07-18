@@ -2,17 +2,19 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
+    android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/ic_launcher"/>
+        android:background="@mipmap/ic_launcher" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fragment_navigation"
-        android:textSize="@dimen/nav_header_dimen"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        android:textSize="@dimen/nav_header_dimen" />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -18,7 +18,8 @@ public class Note implements Parcelable {
         noteDate = in.readString();
         noteId = in.readInt();
     }
-    public Note(int contentIndex){
+
+    public Note(int contentIndex) {
         this.noteId = contentIndex;
     }
 
@@ -37,6 +38,7 @@ public class Note implements Parcelable {
     public String getNoteName() {
         return noteName;
     }
+
     public String getNoteName(Context mContext) {
         return mContext.getResources().getStringArray(R.array.noteName)[noteId];
     }
@@ -84,7 +86,6 @@ public class Note implements Parcelable {
         this.noteDate = noteDate;
         this.noteId = noteId;
     }
-
 
 
     @Override

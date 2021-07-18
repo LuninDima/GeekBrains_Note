@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String CURRENT_NOTE = "CurrentNote";
     public Note currentNote;
     private boolean isLandScape;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         isLandScape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-        if(!isLandScape) {
+        if (!isLandScape) {
             initButton();
             addFragment(new NoteListFragment());
         }
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if (navigateFragment(id)){
+                if (navigateFragment(id)) {
                     drawer.closeDrawer(GravityCompat.START);
                     return true;
                 }
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             String[] noteDescription = getResources().getStringArray(R.array.noteDescription);
             String[] noteDate = getResources().getStringArray(R.array.noteDate);
             String[] noteText = getResources().getStringArray(R.array.noteText);
-            currentNote = new Note(noteName[0],noteDescription[0], noteDate[0],noteText[0], 0);
+            currentNote = new Note(noteName[0], noteDescription[0], noteDate[0], noteText[0], 0);
         }
     }
 
@@ -119,19 +120,19 @@ public class MainActivity extends AppCompatActivity {
         Log.d("mylogs", "добавить фрагмент");
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(isLandScape) {
+        if (isLandScape) {
             fragmentTransaction.replace(R.id.NoteFullFragment, fragment);
-    } else  fragmentTransaction.replace(R.id.fragment_container_main, fragment);
+        } else fragmentTransaction.replace(R.id.fragment_container_main, fragment);
         fragmentTransaction.commit();
     }
 
     private Toolbar initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-    return toolbar;
+        return toolbar;
     }
 
-           @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
@@ -155,21 +156,22 @@ public class MainActivity extends AppCompatActivity {
     private boolean navigateFragment(int id) {
         switch (id) {
 
-                case R.id.notes_item_menu_drawer:
-                    if(!isLandScape) {  addFragment(new NoteListFragment());
+            case R.id.notes_item_menu_drawer:
+                if (!isLandScape) {
+                    addFragment(new NoteListFragment());
                     return true;
-                    }
-                case R.id.full_note_item_menu_drawer:
-                    if(!isLandScape){
+                }
+            case R.id.full_note_item_menu_drawer:
+                if (!isLandScape) {
                     if (currentNote != null) {
                         addFragment(NoteFullFragment.newInstance(currentNote));
                     } else {
                         Toast.makeText(getApplicationContext(), "Не выбрана ни одна заметка", Toast.LENGTH_SHORT).show();
                     }
                 }
-                    return true;
+                return true;
             case R.id.settings_item_menu_drawer:
-               Toast.makeText(getApplicationContext(), "Настройки", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Настройки", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.about_item_menu_drawer:
                 addFragment(new AboutFragment());
@@ -178,19 +180,19 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-                @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         MenuItem search = menu.findItem(R.id.action_search);
         SearchView searchText = (SearchView) search.getActionView();
         searchText.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-           @Override
+            @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
                 return true;
             }
 
-             @Override
+            @Override
             public boolean onQueryTextChange(String newText) {
                 return true;
             }
