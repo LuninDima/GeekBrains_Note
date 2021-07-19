@@ -6,7 +6,6 @@
         android:id="@+id/tv_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="item"
         android:textSize="@dimen/text_tv_item"/>
 
 </FrameLayout>
