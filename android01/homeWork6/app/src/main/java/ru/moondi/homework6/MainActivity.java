@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         isLandScape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
         if (!isLandScape) {
             initButton();
-            addFragment(new NoteListFragment());
+            addFragment(NoteListFragment.newInstance());
         }
 
     }

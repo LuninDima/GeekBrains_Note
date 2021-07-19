@@ -23,6 +23,8 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
 
@@ -31,17 +33,31 @@ public class NoteListFragment extends Fragment {
     // public static final String CURRENT_NOTE_KEY = "CURRENT_NOTE";
     private boolean isLandscape;
 
+    public static Fragment newInstance()
+    {return new NoteListFragment();}
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_note_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_note_list, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view_lines);
+        String[] data = getResources().getStringArray(R.array.noteName);
+        initRecyclerView(recyclerView, data);
+        return view;
+    }
+
+    private void initRecyclerView(RecyclerView recyclerView, String[] data) {
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        final RecyclerAdapter adapter = new RecyclerAdapter(data);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initList(view);
+       // initList(view);
     }
 
     private void initList(View view) {
@@ -50,11 +66,11 @@ public class NoteListFragment extends Fragment {
         LayoutInflater inflater = getLayoutInflater();
         for (int i = 0; i < arrayNoteListName.length; i++) {
             String noteListName = arrayNoteListName[i];
-           View item = inflater.inflate(R.layout.item, linearLayoutCompat, false);
-           TextView tv_item = item.findViewById(R.id.tv_item);
-           tv_item.setText(noteListName);
-           linearLayoutCompat.addView(item);
-                       final int fi = i;
+            View item = inflater.inflate(R.layout.item, linearLayoutCompat, false);
+            TextView tv_item = item.findViewById(R.id.tv_item);
+            tv_item.setText(noteListName);
+            linearLayoutCompat.addView(item);
+            final int fi = i;
             tv_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
