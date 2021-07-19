@@ -52,6 +52,13 @@ public class NoteListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         final RecyclerAdapter adapter = new RecyclerAdapter(data);
         recyclerView.setAdapter(adapter);
+        adapter.SetOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ((MainActivity) getActivity()).currentNote = new Note(getResources().getStringArray(R.array.noteName)[position], getResources().getStringArray(R.array.noteDescription)[position], getResources().getStringArray(R.array.noteDate)[position], getResources().getStringArray(R.array.noteText)[position], position);
+                showNoteFull(((MainActivity) getActivity()).currentNote);
+            }
+        });
     }
 
     @Override
